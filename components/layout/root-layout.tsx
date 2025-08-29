@@ -14,3 +14,4 @@ export function RootLayout({ children }: RootLayoutProps) {
     </div>
   )
 }
+

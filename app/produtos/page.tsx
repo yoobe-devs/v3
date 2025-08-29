@@ -6,8 +6,21 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -17,7 +30,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog"
-import { Search, SlidersHorizontal, Edit, ShoppingCart, ExternalLink } from "lucide-react"
+import { Search, SlidersHorizontal, Edit, ShoppingCart, ExternalLink } from 'lucide-react'
 
 interface Product {
   id: string
@@ -37,42 +50,42 @@ const products: Product[] = [
   {
     id: "1",
     name: "Boné Azul Hapvida",
-    price: 448.0,
+    price: 448.00,
     image: "/placeholder.svg?height=200&width=200",
     country: "Brasil",
     stockQuantity: 100,
     requestedItems: 50,
-    priceByQuantity: { 1: 448.0, 5: 425.0, 10: 400.0, 50: 380.0, 100: 360.0, 1000: 340.0 },
+    priceByQuantity: { 1: 448.00, 5: 425.00, 10: 400.00, 50: 380.00, 100: 360.00, 1000: 340.00 },
     estimatedDelivery: "5-7 dias úteis",
     specifications: "100% algodão, ajustável, logo bordado",
-    isActive: true,
+    isActive: true
   },
   {
-    id: "2",
+    id: "2", 
     name: "Boné Laranja Hapvida",
-    price: 448.0,
+    price: 448.00,
     image: "/placeholder.svg?height=200&width=200",
     country: "Brasil",
     stockQuantity: 75,
     requestedItems: 30,
-    priceByQuantity: { 1: 448.0, 5: 425.0, 10: 400.0, 50: 380.0, 100: 360.0, 1000: 340.0 },
+    priceByQuantity: { 1: 448.00, 5: 425.00, 10: 400.00, 50: 380.00, 100: 360.00, 1000: 340.00 },
     estimatedDelivery: "5-7 dias úteis",
     specifications: "100% algodão, ajustável, logo bordado",
-    isActive: false,
+    isActive: false
   },
   {
     id: "3",
     name: "Boné Preto Hapvida",
-    price: 448.0,
+    price: 448.00,
     image: "/placeholder.svg?height=200&width=200",
     country: "Brasil",
     stockQuantity: 50,
     requestedItems: 40,
-    priceByQuantity: { 1: 448.0, 5: 425.0, 10: 400.0, 50: 380.0, 100: 360.0, 1000: 340.0 },
+    priceByQuantity: { 1: 448.00, 5: 425.00, 10: 400.00, 50: 380.00, 100: 360.00, 1000: 340.00 },
     estimatedDelivery: "5-7 dias úteis",
     specifications: "100% algodão, ajustável, logo bordado",
-    isActive: true,
-  },
+    isActive: true
+  }
 ]
 
 const claimMethods = [
@@ -88,13 +101,15 @@ export default function ProductsPage() {
   const [purchaseQuantities, setPurchaseQuantities] = useState<{ [key: string]: number }>({})
 
   const handleClaimMethodChange = (methodId: string) => {
-    setSelectedClaimMethods((prev) =>
-      prev.includes(methodId) ? prev.filter((id) => id !== methodId) : [...prev, methodId],
+    setSelectedClaimMethods(prev => 
+      prev.includes(methodId)
+        ? prev.filter(id => id !== methodId)
+        : [...prev, methodId]
     )
   }
 
   const handleQuantityChange = (productId: string, quantity: number) => {
-    setPurchaseQuantities((prev) => ({ ...prev, [productId]: quantity }))
+    setPurchaseQuantities(prev => ({ ...prev, [productId]: quantity }))
   }
 
   return (
@@ -108,7 +123,9 @@ export default function ProductsPage() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Adicionar novo produto</DialogTitle>
-              <DialogDescription>Preencha os dados do novo produto</DialogDescription>
+              <DialogDescription>
+                Preencha os dados do novo produto
+              </DialogDescription>
             </DialogHeader>
             {/* Add product form would go here */}
           </DialogContent>
@@ -142,7 +159,7 @@ export default function ProductsPage() {
           <Card key={product.id}>
             <CardHeader>
               <img
-                src={product.image || "/placeholder.svg"}
+                src={product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover rounded-lg"
               />
@@ -152,9 +169,7 @@ export default function ProductsPage() {
                 <CardTitle className="flex items-center gap-2">
                   {product.name}
                   {product.isActive ? (
-                    <span className="text-xs font-normal text-green-500 bg-green-100 px-2 py-1 rounded-full">
-                      Ativo
-                    </span>
+                    <span className="text-xs font-normal text-green-500 bg-green-100 px-2 py-1 rounded-full">Ativo</span>
                   ) : (
                     <span className="text-xs font-normal text-red-500 bg-red-100 px-2 py-1 rounded-full">Inativo</span>
                   )}
@@ -204,8 +219,8 @@ export default function ProductsPage() {
                     type="number"
                     min="1"
                     placeholder="Quantidade"
-                    value={purchaseQuantities[product.id] || ""}
-                    onChange={(e) => handleQuantityChange(product.id, Number.parseInt(e.target.value))}
+                    value={purchaseQuantities[product.id] || ''}
+                    onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value))}
                   />
                   <Dialog>
                     <DialogTrigger asChild>
@@ -219,12 +234,8 @@ export default function ProductsPage() {
                         <DialogTitle>Detalhes da Compra - {product.name}</DialogTitle>
                       </DialogHeader>
                       <div className="space-y-4">
-                        <p>
-                          <strong>Especificações:</strong> {product.specifications}
-                        </p>
-                        <p>
-                          <strong>Prazo de entrega estimado:</strong> {product.estimatedDelivery}
-                        </p>
+                        <p><strong>Especificações:</strong> {product.specifications}</p>
+                        <p><strong>Prazo de entrega estimado:</strong> {product.estimatedDelivery}</p>
                         <div>
                           <strong>Preço por quantidade:</strong>
                           <ul className="list-disc list-inside">
@@ -254,3 +265,4 @@ export default function ProductsPage() {
     </div>
   )
 }
+

@@ -20,3 +20,4 @@ export interface Recipient {
   trackingCode: string
   status: "delivered" | "in_transit" | "processing"
 }
+
